@@ -1,0 +1,19 @@
+{
+  "dependencies": {
+    "aws-sdk": "^2.1243.0",
+    "dotenv": "^16.0.3"
+  },
+  "name": "s3-examples",
+  "version": "1.0.0",
+  "main": "script.js",
+  "scripts": {
+    "list": "node listBuckets.js",
+    "add": "node addFile.js",
+    "delete": "node deleteFile.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "type": "module",
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
