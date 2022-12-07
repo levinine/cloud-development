@@ -1,0 +1,209 @@
+{
+	"info": {
+		"_postman_id": "ca048f40-66d4-4fb0-baf0-6ec2fb73c2ae",
+		"name": "MATF Cloud 2022 - Cognito",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Cognito Auth",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "client_authentication",
+							"value": "body",
+							"type": "string"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "https://localhost",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "{yourClientId}",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "https://{userPoolName}.auth.{userPoolRegion}.amazoncognito.com/oauth2/token",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "https://{userPoolName}.auth.{userPoolRegion}.amazoncognito.com/oauth2/authorize",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "authorization_code_with_pkce",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetId",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-AMZ-TARGET",
+						"value": "com.amazonaws.cognito.identity.model.AWSCognitoIdentityService.GetId",
+						"type": "default"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-amz-json-1.1",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"IdentityPoolId\":\"{yourIdentityPoolId}\",\n    \"Logins\":{\n        \"cognito-idp.{someRegion}.amazonaws.com/{yourUserPoolId}\":\"{jwt}\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "text"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://cognito-identity.{identityPoolRegion}.amazonaws.com/?Action=GetId",
+					"protocol": "https",
+					"host": [
+						"cognito-identity",
+						"{someRegion}",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						""
+					],
+					"query": [
+						{
+							"key": "Action",
+							"value": "GetId"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetCredentialsForIdentity",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-AMZ-TARGET",
+						"value": "com.amazonaws.cognito.identity.model.AWSCognitoIdentityService.GetCredentialsForIdentity",
+						"type": "default"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-amz-json-1.1",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"IdentityId\":\"{yourIdentityId}\",\n    \"Logins\":{\n        \"cognito-idp.{someRegion}.amazonaws.com/{yourUserPoolId}\":\"{jwt}\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "text"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://cognito-identity.{someRegion}.amazonaws.com/?Action=GetCredentialsForIdentity",
+					"protocol": "https",
+					"host": [
+						"cognito-identity",
+						"{someRegion}",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						""
+					],
+					"query": [
+						{
+							"key": "Action",
+							"value": "GetCredentialsForIdentity"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "S3 List Objects in your bucket",
+			"request": {
+				"auth": {
+					"type": "awsv4",
+					"awsv4": [
+						{
+							"key": "sessionToken",
+							"value": "{yourSessionToken}",
+							"type": "string"
+						},
+						{
+							"key": "secretKey",
+							"value": "{yourSecretKey}",
+							"type": "string"
+						},
+						{
+							"key": "accessKey",
+							"value": "{yourAccessKey}",
+							"type": "string"
+						},
+						{
+							"key": "region",
+							"value": "{someRegion}",
+							"type": "string"
+						},
+						{
+							"key": "service",
+							"value": "s3",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-amz-content-sha256",
+						"value": "UNSIGNED-PAYLOAD",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{s3Url}",
+					"protocol": "https",
+					"host": [
+						"{someNmae}",
+						"s3",
+						"{someRegion}",
+						"amazonaws",
+						"com"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
