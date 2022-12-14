@@ -1,0 +1,15 @@
+{
+  "name": "matflevi9-dynamodb",
+  "version": "1.0.0",
+  "description": "Example app for dynamoDB",
+  "main": "handler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Levi9",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.1261.0",
+    "uuid": "^9.0.0"
+  }
+}
